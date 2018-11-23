@@ -19,9 +19,8 @@ class BlogPosts extends Component{
     };
 
     displayPost = ( post, index ) => {
-        console.log(post.id)
         return (
-           <div className="post-item" key={post.id}>
+           <div className="post-item" key={index}>
                 <p className="post-item__title">
                    { post.title }
                 </p>
@@ -34,7 +33,13 @@ class BlogPosts extends Component{
                 </p>
            </div>
         )
-      };
+    };
+
+    addNewPost = ( post ) => {
+        const posts = this.state.posts;
+        posts.push(post);
+        this.setState({ posts: posts })
+    };
 
     render(){
         let posts = this.state.posts;
@@ -46,7 +51,7 @@ class BlogPosts extends Component{
                     { createdPosts }
                 </div>
                 <div className="posts-form">
-                    <PostsForm/>
+                    <PostsForm submit={this.addNewPost}/>
                 </div>
             </div>
         );

@@ -6,28 +6,28 @@ class PostsForm extends Component{
         super(props);
         
         this.state = {
-            posts: [],
-            title: '',
-            img: '',
-            text: '',
+            newPost: {},
         };
+        this.submittingPostForm = this.submittingPostForm.bind(this);
     };
 
-    handleChange = ( event ) => {
-        const { value, name } = event.target;
-        
-        this.setState({ [name]: value });
+    handleChange = ( e ) => {
+        const { value, name } = e.target;
+        let newPostState = this.state.newPost
+        let newPost = Object.assign( newPostState, { [name]: value })
+        this.setState({ newPost: newPost });
+    };
 
-        // const newPost = {};
-        // if ( name === 'title') newPost.title = value;
-        // if ( name === 'img') newPost.img = value;
-        // if ( name === 'text') newPost.text = value;
-    
-    }
+    submittingPostForm = ( e ) => {
+        e.preventDefault();
+        const posts = this.state.newPost;
+        this.props.submit(posts);
+        this.setState({ newPost: {} });
+    };
 
     render(){
         return(
-            <form className="postsForm" onSubmit={ () => this.submittingPostForm }>
+            <form className="postsForm" onSubmit={ (e) => this.submittingPostForm(e) }>
                 <p className="postsForm__title">Create your NEW post</p>
                 <div className="postsForm__inputs-wrp">
                     <input 
@@ -46,7 +46,10 @@ class PostsForm extends Component{
                     placeholder="type text of your post"
                     name="text"
                 />
-                <button type="submit">to post!</button>
+                <input
+                    className="postsForm__btn"
+                    type="submit"
+                    value="to post!"/>
             </form>
         );
     };

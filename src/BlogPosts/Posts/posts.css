@@ -11,7 +11,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    position: relative;
+    padding: 10px 10px 45px;
     margin: 20px 0;
     border-bottom: 1px solid #c0c0c0;
 }
@@ -37,4 +38,24 @@
     font-weight: 400;
     letter-spacing: .25px;
     margin-top: 50px;
+}
+
+.delete-post-btn{
+    width: 150px;
+    padding: 10px;
+    font-size: 12px;
+    margin-top: 10px;
+    cursor: pointer;
+    color: #000;
+    border: 1px solid #c0c0c0;
+    text-align: center;
+    position: absolute;
+    bottom: 15px;
+    right: 10px;
+    transition: .5s;
+}
+
+.delete-post-btn:hover{
+    color: #fff;
+    background: rgb(221, 64, 64);
 }

@@ -12,17 +12,23 @@ class PostsForm extends Component{
     };
 
     handleChange = ( e ) => {
-        const { value, name } = e.target;
-        let newPostState = this.state.newPost
-        let newPost = Object.assign( newPostState, { [name]: value })
-        this.setState({ newPost: newPost });
+        let { value, name } = e.target;
+
+        if ( value !== '' ) {
+            let newPostState = this.state.newPost;
+            let newPost = Object.assign( newPostState, { [name]: value });
+
+            this.setState({ newPost: newPost });
+        };
     };
 
     submittingPostForm = ( e ) => {
         e.preventDefault();
-        const posts = this.state.newPost;
-        this.props.submit(posts);
-        this.setState({ newPost: {} });
+        
+        let posts = this.state.newPost;
+        let postWithId = Object.assign( posts, { id: Date.now() });
+
+        this.props.submit(postWithId);
     };
 
     render(){
